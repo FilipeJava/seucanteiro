@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioFormDTO {
+public class UsuarioRespostaDTO {
 
+    private Long id;
 
-   
     private String nome;
 
     private String cpf;
@@ -23,7 +23,4 @@ public class UsuarioFormDTO {
 
     private String telefone;
 
- 
-
-    
 }
