@@ -34,4 +34,10 @@ public class Login {
     // relacao 1 : N
     @OneToMany(mappedBy = "login")
     private List<Usuario> usuario;
+
+
+
+    
+
+
 }

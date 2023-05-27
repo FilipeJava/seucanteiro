@@ -24,8 +24,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario salvar(UsuarioFormDTO usuarioFormDTO, LoginFormDTO login) {
-    
-        // criar usuario 
+
+        // criar usuario
         Usuario usuario = convertToEntity(usuarioFormDTO);
 
         // criar login
@@ -36,36 +36,39 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         // salvar usuario
         return usuarioRepository.save(usuario);
-    
+
     }
 
     @Override
     public Usuario buscarPorId(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
+        return usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
     }
 
     @Override
     public Usuario atualizar(Long id, UsuarioFormDTO usuarioFormDTO) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizar'");
+        return usuarioRepository.findById(id).map(usuario -> {
+            usuario.setNome(usuarioFormDTO.getNome());
+            usuario.setCpf(usuarioFormDTO.getCpf());
+            usuario.setDataNascimento(usuarioFormDTO.getDataNascimento());
+            usuario.setTelefone(usuarioFormDTO.getTelefone());
+            return usuarioRepository.save(usuario);
+        }).orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
     }
 
     @Override
     public void deletar(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deletar'");
+        usuarioRepository.deleteById(id);
     }
 
     @Override
     public Usuario buscaPorCpf(String cpf) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaPorCpf'");
-    }
-    
 
+        return usuarioRepository.findByCpf(cpf);
+    }
+
+    // DTO METHODS
     private Usuario convertToEntity(UsuarioFormDTO usuarioFormDTO) {
-        return modelMapper.map( usuarioFormDTO, Usuario.class);
+        return modelMapper.map(usuarioFormDTO, Usuario.class);
 
     }
 
