@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UsuarioRespostaDTO {
 
+    /* Resposta get do usuario que vira do back */
+
     private Long id;
 
     private String nome;

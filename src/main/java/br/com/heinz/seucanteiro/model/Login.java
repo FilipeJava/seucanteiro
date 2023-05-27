@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,5 +33,5 @@ public class Login {
 
     // relacao 1 : N
     @OneToMany(mappedBy = "login")
-    private List <Usuario> usuario;
+    private List<Usuario> usuario;
 }
