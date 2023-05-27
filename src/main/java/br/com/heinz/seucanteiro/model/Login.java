@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,28 +18,21 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "T_CAN_PLANTAS")
-public class Planta {
+@Entity(name = "T_CAN_LOGIN")
+public class Login {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_PLANTA")
+    @Column(name = "ID_LOGIN")
     private Long id;
 
-    @Column(name = "NM_PLANTA")
-    private String nome;
+    @Column(name = "DS_EMAIL")
+    private String email;
 
-    @Column(name = "NR_REGACAO")
-    private Integer regacao;
-
-    @Column(name = "NM_CIENTIFICO")
-    private String nomeCientifico;
-
-    @Column(name = "NM_APELIDO")
-    private String apelido;
+    @Column(name = "DS_SENHA")
+    private String senha;
 
     // relacao 1 : N
-    @OneToMany(mappedBy = "planta")
-    private List<Plantio> plantios;
-
+    @OneToMany(mappedBy = "login")
+    private List <Usuario> usuario;
 }
