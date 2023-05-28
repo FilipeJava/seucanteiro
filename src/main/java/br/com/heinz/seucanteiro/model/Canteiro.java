@@ -11,33 +11,29 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity(name = "T_CAN_CANTEIRO")
 public class Canteiro {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CANTEIRO")
     private Long id;
 
-
-
-   
-
- 
     @Column(name = "NM_CANTEIRO")
-    private String nomeCanteiro;
+    private String nome;
 
-     // relacao N : 1
-     @ManyToOne
-     @JoinColumn(name = "ID_USUARIO", nullable = true)
-     private Usuario usuario;
+    // relacao N : 1
+    @ManyToOne
+    @JoinColumn(name = "ID_USUARIO", nullable = true)
+    private Usuario usuario;
 
     // relacao 1 : N
     @OneToMany(mappedBy = "canteiro")

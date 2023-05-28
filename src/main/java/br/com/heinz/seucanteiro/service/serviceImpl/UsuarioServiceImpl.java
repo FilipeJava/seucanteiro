@@ -2,6 +2,7 @@ package br.com.heinz.seucanteiro.service.serviceImpl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.heinz.seucanteiro.model.Login;
 import br.com.heinz.seucanteiro.model.LoginFormDTO;
@@ -11,6 +12,7 @@ import br.com.heinz.seucanteiro.model.UsuarioRespostaDTO;
 import br.com.heinz.seucanteiro.repository.UsuarioRepository;
 import br.com.heinz.seucanteiro.service.UsuarioService;
 
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
@@ -23,7 +25,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     private ModelMapper modelMapper;
 
     @Override
-    public Usuario salvar(UsuarioFormDTO usuarioFormDTO, LoginFormDTO login) {
+    public UsuarioRespostaDTO salvar(UsuarioFormDTO usuarioFormDTO, LoginFormDTO login) {
+
+        // chumbar canteiro para teste
+                
 
         // criar usuario
         Usuario usuario = convertToEntity(usuarioFormDTO);
@@ -35,10 +40,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setLogin(loginEntity);
 
         // salvar usuario
-        return usuarioRepository.save(usuario);
+        return convertToResposta(usuarioRepository.save(usuario));
 
     }
 
+
+    
     @Override
     public Usuario buscarPorId(Long id) {
         return usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
