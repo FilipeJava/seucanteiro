@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,22 +17,25 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "T_CAN_INTEGRACAO")
-public class Integracao {
+@Entity(name = "T_CAN_INTERACAO")
+public class Interacao {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "ID_INTEGRACAO")
+@Column(name = "ID_INTERACAO")
 private Long id;    
     
 @Column(name = "ID_CONTEXTO")
+@NotNull
 private Long idContexto;
 
 @Column(name = "DS_ASSUNTO")
+@NotBlank
 private String assunto;
 
-@Column(name = "DT_INTEGRACAO")
-private LocalDate dataIntegracao;
+@Column(name = "DT_INTERACAO")
+@NotNull
+private LocalDate dataInteracao;
 
 private Bot bot;
 

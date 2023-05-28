@@ -11,6 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,15 +32,19 @@ public class Usuario {
     private Long id;
 
     @Column(name = "NM_USUARIO")
+    @NotBlank @Size(min = 3)
     private String nome;
 
     @Column(name = "DS_CPF")
+    @NotBlank
     private String cpf;
 
     @Column(name = "DT_NASCIMENTO")
+    @NotNull
     private LocalDateTime dataNascimento;
 
     @Column(name = "DS_TELEFONE")
+    @NotBlank
     private String telefone;
 
     // relacao 1 : N

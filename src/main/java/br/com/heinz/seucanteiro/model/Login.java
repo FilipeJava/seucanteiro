@@ -8,6 +8,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,9 +29,12 @@ public class Login {
     private Long id;
 
     @Column(name = "DS_EMAIL")
+    @NotBlank
+    @Email
     private String email;
 
     @Column(name = "DS_SENHA")
+    @NotBlank @Size(min = 8, max = 16)
     private String senha;
 
     // relacao 1 : N

@@ -8,6 +8,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,9 +29,11 @@ public class Planta {
     private Long id;
 
     @Column(name = "NM_PLANTA")
+    @NotBlank @Size(min = 3)
     private String nome;
 
     @Column(name = "NR_REGACAO")
+    @NotNull
     private Integer regacao;
 
     @Column(name = "NM_CIENTIFICO")
