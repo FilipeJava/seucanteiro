@@ -1,6 +1,6 @@
 package br.com.heinz.seucanteiro.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -32,7 +32,8 @@ public class Usuario {
     private Long id;
 
     @Column(name = "NM_USUARIO")
-    @NotBlank @Size(min = 3)
+    @NotBlank
+    @Size(min = 3)
     private String nome;
 
     @Column(name = "DS_CPF")
@@ -41,7 +42,7 @@ public class Usuario {
 
     @Column(name = "DT_NASCIMENTO")
     @NotNull
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
 
     @Column(name = "DS_TELEFONE")
     @NotBlank
@@ -53,7 +54,10 @@ public class Usuario {
 
     // relacao N : 1
     @ManyToOne
-    @JoinColumn(name = "ID_LOGIN", nullable = true)
+    @JoinColumn(name = "ID_LOGIN")
     private Login login;
 
-} 
+    public void addCanteiro(Canteiro canteiro) {
+        this.canteiros.add(canteiro);
+    }
+}

@@ -5,11 +5,12 @@ import java.util.List;
 import br.com.heinz.seucanteiro.model.Canteiro;
 import br.com.heinz.seucanteiro.model.CanteiroFormDTO;
 import br.com.heinz.seucanteiro.model.CanteiroRespostaDTO;
+import br.com.heinz.seucanteiro.model.Usuario;
 
 public interface CanteiroService {
 
 
-    CanteiroRespostaDTO save(CanteiroFormDTO canteiroform, Long idUsuario);
+    CanteiroRespostaDTO save(Usuario usuario);
 
     void delete(Long id);
 

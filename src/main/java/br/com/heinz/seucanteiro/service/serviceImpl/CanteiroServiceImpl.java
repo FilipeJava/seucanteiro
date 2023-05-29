@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.heinz.seucanteiro.model.Canteiro;
 import br.com.heinz.seucanteiro.model.CanteiroFormDTO;
 import br.com.heinz.seucanteiro.model.CanteiroRespostaDTO;
+import br.com.heinz.seucanteiro.model.Usuario;
 import br.com.heinz.seucanteiro.repository.CanteiroRepository;
 import br.com.heinz.seucanteiro.service.CanteiroService;
 
@@ -25,11 +26,14 @@ public class CanteiroServiceImpl implements CanteiroService {
     private ModelMapper modelMapper;
 
     @Override
-    public CanteiroRespostaDTO save(CanteiroFormDTO canteiroform, Long idUsuario) {
+    public CanteiroRespostaDTO save(Usuario usuario) {
 
-        Canteiro canteiro = convertToEntity(canteiroform);
-        canteiro.setUsuario(usuarioServiceImpl.buscarPorId(idUsuario));
+        Canteiro canteiro = new Canteiro();
+        
+        canteiro.setNome("Canteiro do " + usuario.getNome());
+        canteiro.setUsuario(usuario);
         canteiroRepository.save(canteiro);
+        
         return convertToResposta(canteiro);
 
     }
