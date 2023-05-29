@@ -1,9 +1,12 @@
 package br.com.heinz.seucanteiro.service.serviceImpl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.heinz.seucanteiro.model.Usuario;
+import br.com.heinz.seucanteiro.model.UsuarioFormDTO;
+import br.com.heinz.seucanteiro.model.UsuarioRespostaDTO;
 import br.com.heinz.seucanteiro.repository.UsuarioRepository;
 import br.com.heinz.seucanteiro.service.UsuarioService;
 
@@ -16,6 +19,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     LoginServiceImpl loginServiceImpl;
 
+    @Autowired
+    ModelMapper modelMapper;
+
     @Override
     public Usuario salvar(Usuario usuario) {
 
@@ -24,9 +30,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario buscarPorId(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
+    public UsuarioRespostaDTO buscarPorId(Long id) {
+        return  convertToRespostaUsuario( usuarioRepository.findById(id).get());
     }
 
     @Override
@@ -36,15 +41,23 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void deletar(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deletar'");
+    public void deletarPorId(Long id)  {
+        usuarioRepository.delete(usuarioRepository.findById(id).get());
     }
 
     @Override
     public Usuario buscaPorCpf(String cpf) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'buscaPorCpf'");
+    }
+
+    private Usuario convertToEntityUsuario(UsuarioFormDTO usuarioFormDTO) {
+        return modelMapper.map(usuarioFormDTO, Usuario.class);
+
+    }
+
+    private UsuarioRespostaDTO convertToRespostaUsuario(Usuario usuario) {
+        return modelMapper.map(usuario, UsuarioRespostaDTO.class);
     }
 
 }

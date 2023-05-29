@@ -1,16 +1,17 @@
 package br.com.heinz.seucanteiro.service;
 
 import br.com.heinz.seucanteiro.model.Usuario;
+import br.com.heinz.seucanteiro.model.UsuarioRespostaDTO;
 
 public interface UsuarioService {
 
     Usuario salvar(Usuario usuario);
 
-    Usuario buscarPorId(Long id);
+    UsuarioRespostaDTO buscarPorId(Long id);
 
     Usuario atualizar(Usuario usuario);
 
-    void deletar(Long id);
+    void deletarPorId (Long id);
 
     Usuario buscaPorCpf(String cpf);
 

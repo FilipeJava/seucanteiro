@@ -44,7 +44,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public void deletaLogin(Long id) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deletaLogin'");
+     
     }
 
 
@@ -53,6 +53,14 @@ public class LoginServiceImpl implements LoginService {
     public Login atualizaLogin(Login login) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'atualizaLogin'");
+    }
+
+
+
+    public void deletarPorId(Long id) {
+
+        loginRepository.delete(loginRepository.findById(id).get());
+        
     }
 
 

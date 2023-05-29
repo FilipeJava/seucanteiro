@@ -43,20 +43,19 @@ public class UsuarioLoginServiceImpl implements UsuarioLoginService {
         Usuario usuarioCanteiro =usuarioServiceImpl.salvar(usuario);
         canteiroServiceImpl.save(usuarioCanteiro);
 
-
         return convertToRespostaUsuario(usuario);
 
     }
 
 
-
+   
 
 
 
 
       // DTO METHODS
-    private Usuario convertToEntityUsuario(UsuarioFormDTO usuarioFormDTO) {
-        return modelMapper.map(usuarioFormDTO, Usuario.class);
+    private Usuario convertToEntityUsuario(UsuarioFormDTO usuarioform) {
+        return modelMapper.map(usuarioform, Usuario.class);
 
     }
 

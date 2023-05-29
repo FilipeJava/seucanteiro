@@ -3,6 +3,7 @@ package br.com.heinz.seucanteiro.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -49,11 +50,11 @@ public class Usuario {
     private String telefone;
 
     // relacao 1 : N
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
     private List<Canteiro> canteiros;
 
     // relacao N : 1
-    @ManyToOne
+    @ManyToOne( )
     @JoinColumn(name = "ID_LOGIN")
     private Login login;
 
