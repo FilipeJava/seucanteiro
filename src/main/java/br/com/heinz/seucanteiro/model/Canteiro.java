@@ -40,7 +40,7 @@ public class Canteiro {
     private Usuario usuario;
 
     // relacao 1 : N
-    @OneToMany(mappedBy = "canteiro")
+    @OneToMany(mappedBy = "canteiro",cascade = CascadeType.ALL)
     private List<Plantio> plantios;
 
 }

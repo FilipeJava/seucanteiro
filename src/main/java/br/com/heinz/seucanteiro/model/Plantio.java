@@ -2,6 +2,7 @@ package br.com.heinz.seucanteiro.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,12 +41,12 @@ public class Plantio {
 
     // relacao N : 1
     @ManyToOne
-    @JoinColumn(name = "ID_CANTEIRO", nullable = true)
+    @JoinColumn(name = "ID_CANTEIRO")
     private Canteiro canteiro;
 
     // relacao N : 1
-    @ManyToOne
-    @JoinColumn(name = "ID_PLANTA", nullable = true)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_PLANTA")
     private Planta planta;
 
 }
