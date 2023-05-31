@@ -1,4 +1,4 @@
-package br.com.heinz.seucanteiro.model;
+package br.com.heinz.seucanteiro.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

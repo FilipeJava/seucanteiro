@@ -1,4 +1,4 @@
-package br.com.heinz.seucanteiro.model;
+package br.com.heinz.seucanteiro.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

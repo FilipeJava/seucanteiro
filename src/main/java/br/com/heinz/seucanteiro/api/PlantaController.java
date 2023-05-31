@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.heinz.seucanteiro.dto.PlantaRespostaDTO;
 import br.com.heinz.seucanteiro.model.PlantaPlantio;
-import br.com.heinz.seucanteiro.model.PlantaRespostaDTO;
 import br.com.heinz.seucanteiro.service.serviceImpl.PlantaPlantioServiceImpl;
 import br.com.heinz.seucanteiro.service.serviceImpl.PlantaServiceImpl;
 import br.com.heinz.seucanteiro.service.serviceImpl.PlantioServiceImpl;
@@ -45,18 +45,5 @@ public class PlantaController {
 
     }
 
-    /**
-     * @PostMapping
-     *              public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody
-     *              UsuarioLogin usuarioLogin) {
-     *              {
-     *              log.info("Salvando usuario");
-     *              return
-     *              ResponseEntity.ok(usuarioLoginServiceImpl.salvar(usuarioLogin));
-     * 
-     *              }
-     * 
-     *              }
-     */
 
 }

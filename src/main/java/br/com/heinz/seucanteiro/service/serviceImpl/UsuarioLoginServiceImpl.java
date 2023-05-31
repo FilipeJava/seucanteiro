@@ -4,13 +4,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.heinz.seucanteiro.dto.LoginFormDTO;
+import br.com.heinz.seucanteiro.dto.LoginRespostaDTO;
+import br.com.heinz.seucanteiro.dto.UsuarioFormDTO;
+import br.com.heinz.seucanteiro.dto.UsuarioRespostaDTO;
 import br.com.heinz.seucanteiro.model.Login;
-import br.com.heinz.seucanteiro.model.LoginFormDTO;
-import br.com.heinz.seucanteiro.model.LoginRespostaDTO;
 import br.com.heinz.seucanteiro.model.Usuario;
-import br.com.heinz.seucanteiro.model.UsuarioFormDTO;
 import br.com.heinz.seucanteiro.model.UsuarioLogin;
-import br.com.heinz.seucanteiro.model.UsuarioRespostaDTO;
 import br.com.heinz.seucanteiro.service.UsuarioLoginService;
 
 @Service

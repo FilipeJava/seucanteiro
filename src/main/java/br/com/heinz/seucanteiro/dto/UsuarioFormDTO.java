@@ -1,4 +1,4 @@
-package br.com.heinz.seucanteiro.model;
+package br.com.heinz.seucanteiro.dto;
 
 import java.time.LocalDate;
 
@@ -14,23 +14,24 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioRespostaDTO {
+public class UsuarioFormDTO {
 
-    /* Resposta get do usuario que vira do back */
 
-    @NotNull
-    private Long id;
+    /* Requisiçao post do usuario que vira do front */
 
-    @NotBlank @Size(min = 3)
+   @NotBlank @Size(min = 3)
     private String nome;
 
-    @NotBlank
+   @NotBlank
     private String cpf;
 
-    @NotNull
+   @NotNull
     private LocalDate dataNascimento;
 
-    @NotBlank
+   @NotBlank
     private String telefone;
 
+ 
+
+    
 }

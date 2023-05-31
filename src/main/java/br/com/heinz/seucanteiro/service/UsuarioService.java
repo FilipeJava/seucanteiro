@@ -1,8 +1,8 @@
 package br.com.heinz.seucanteiro.service;
 
+import br.com.heinz.seucanteiro.dto.UsuarioFormDTO;
+import br.com.heinz.seucanteiro.dto.UsuarioRespostaDTO;
 import br.com.heinz.seucanteiro.model.Usuario;
-import br.com.heinz.seucanteiro.model.UsuarioFormDTO;
-import br.com.heinz.seucanteiro.model.UsuarioRespostaDTO;
 
 public interface UsuarioService {
 
