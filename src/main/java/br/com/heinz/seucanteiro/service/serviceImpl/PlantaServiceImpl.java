@@ -18,5 +18,14 @@ public class PlantaServiceImpl implements PlantaService {
     public Planta salvar(Planta planta) {
        return plantaRepository.save(planta);
     }
+
+
+  
+
+
+    @Override
+    public Planta buscaId(Long id) {
+       return plantaRepository.findById(id).get();
+    }
     
 }

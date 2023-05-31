@@ -6,4 +6,5 @@ public interface PlantioService {
 
     Plantio salvar(Plantio plantio);
     
+    Plantio buscaId(Long id);
 }

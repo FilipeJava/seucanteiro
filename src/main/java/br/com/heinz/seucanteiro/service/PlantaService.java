@@ -6,4 +6,6 @@ public interface PlantaService {
 
     Planta salvar(Planta planta);
 
+    Planta buscaId(Long id);
+
 }

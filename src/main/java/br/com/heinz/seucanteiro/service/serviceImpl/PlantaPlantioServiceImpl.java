@@ -51,9 +51,51 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
 
         return convertToRespostaPlanta(planta);
 
+    }
+
+    @Override
+    public PlantaRespostaDTO autaliza(Long idPlanta, PlantaPlantio plantaPlantio) {
+
+        // busca planta e atualiza
+        Planta planta = plantaServiceImpl.buscaId(idPlanta);
+        planta.setNome(plantaPlantio.getPlanta().getNome());
+        planta.setNomeCientifico(plantaPlantio.getPlanta().getNomeCientifico());
+        planta.setApelido(plantaPlantio.getPlanta().getApelido());
+
+        // grava planta atualizada
+        plantaServiceImpl.salvar(planta);
+
+        // busca plantio e atualiza que tem o mesmo id da planta
+        Plantio plantio = plantioServiceImpl.buscaId(idPlanta);
+        plantio.setDataPlantio(plantaPlantio.getPlantio().getDataPlantio());
+        plantio.setQuantidadePlantada(plantaPlantio.getPlantio().getQuantidadePlantada());
+        plantio.setPlanta(planta);
+        plantio.setDataColheita(plantaPlantio.getPlantio().getDataColheita());
+
+        // Salva plantio atualizado
+        plantioServiceImpl.salvar(plantio);
+
+        return convertToRespostaPlanta(planta);
+
+    }
 
 
 
+    @Override
+    public PlantaPlantio buscaId(Long idPlanta) {
+       
+        // busco planta e plantio pelo id
+        Planta planta = plantaServiceImpl.buscaId(idPlanta);
+        Plantio plantio = plantioServiceImpl.buscaId(idPlanta);
+
+
+        // crio objeto plantaPlantio e seto planta e plantio
+        PlantaPlantio plantaPlantio = new PlantaPlantio();
+        plantaPlantio.setPlanta(convertToFormPlanta(planta));
+        plantaPlantio.setPlantio(convertToFormPlantio(plantio));
+
+        return plantaPlantio;
+     
     }
 
     // DTO METHODS
@@ -74,5 +116,18 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
     private PlantioRespostaDTO convertToRespostaPlantio(Plantio plantio) {
         return modelMapper.map(plantio, PlantioRespostaDTO.class);
     }
+
+    //converte model planta para Plantaformdto
+    private PlantaFormDTO convertToFormPlanta(Planta planta) {
+        return modelMapper.map(planta, PlantaFormDTO.class);
+    }
+
+    //converte model plantio para Plantioformdto
+    private PlantioFormDTO convertToFormPlantio(Plantio plantio) {
+        return modelMapper.map(plantio, PlantioFormDTO.class);
+    }
+
+
+   
 
 }

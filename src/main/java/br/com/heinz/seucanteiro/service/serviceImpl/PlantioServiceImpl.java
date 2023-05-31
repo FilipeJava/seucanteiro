@@ -18,6 +18,11 @@ public class PlantioServiceImpl implements PlantioService {
         return plantioRepository.save(plantio);
     }
 
+    @Override
+    public Plantio buscaId(Long id) {
+      return plantioRepository.findById(id).get();
+    }
+
 
 
 }
