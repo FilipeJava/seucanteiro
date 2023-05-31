@@ -1,5 +1,6 @@
 package br.com.heinz.seucanteiro.api;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class UsuarioController {
     @Autowired
     LoginServiceImpl loginServiceImpl;
 
-    org.slf4j.Logger log = LoggerFactory.getLogger(UsuarioController.class);
+    Logger log = LoggerFactory.getLogger(UsuarioController.class);
 
     // metodo para salvar usuario recebendo um usuarioFormDTO e um loginFormDTO
     @PostMapping
@@ -57,17 +58,15 @@ public class UsuarioController {
     public ResponseEntity<UsuarioRespostaDTO> deletar(@PathVariable Long id) {
         log.info("Deletando usuario por id");
         usuarioServiceImpl.deletarPorId(id);
-        loginServiceImpl.deletarPorId(id);
+        // loginServiceImpl.deletarPorId(id);
 
         return ResponseEntity.ok().build();
     }
 
     // metodo para atualizar usuario
-    // @PutMapping("{id}")
-    // public ResponseEntity<UsuarioRespostaDTO> atualizaUsuario(@PathVariable Long
-    // id,
-    // @RequestBody UsuarioFormDTO usuarioFormDTO) {
-    // log.info("Atualizando usuario");
-    // return ResponseEntity.ok(usuarioServiceImpl.atualizar(usuarioFormDTO, id));
-    // }
+    @PutMapping("{id}")
+    public ResponseEntity<UsuarioRespostaDTO> atualizaUsuario(@PathVariable Long id, @RequestBody UsuarioFormDTO usuarioFormDTO) {
+    log.info("Atualizando usuario");
+    return ResponseEntity.ok(usuarioServiceImpl.atualizar( id,usuarioFormDTO));
+    }
 }

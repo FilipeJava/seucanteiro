@@ -2,6 +2,7 @@ package br.com.heinz.seucanteiro.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Canteiro {
     private String nome;
 
     // relacao N : 1
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_USUARIO", nullable = true)
     private Usuario usuario;
 

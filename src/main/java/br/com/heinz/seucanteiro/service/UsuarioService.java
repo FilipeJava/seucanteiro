@@ -1,6 +1,7 @@
 package br.com.heinz.seucanteiro.service;
 
 import br.com.heinz.seucanteiro.model.Usuario;
+import br.com.heinz.seucanteiro.model.UsuarioFormDTO;
 import br.com.heinz.seucanteiro.model.UsuarioRespostaDTO;
 
 public interface UsuarioService {
@@ -9,7 +10,7 @@ public interface UsuarioService {
 
     UsuarioRespostaDTO buscarPorId(Long id);
 
-    Usuario atualizar(Usuario usuario);
+    UsuarioRespostaDTO atualizar( Long id ,UsuarioFormDTO usuarioform);
 
     void deletarPorId (Long id);
 

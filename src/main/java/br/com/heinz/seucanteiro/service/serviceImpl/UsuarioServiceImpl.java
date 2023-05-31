@@ -30,14 +30,21 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioRespostaDTO buscarPorId(Long id) {
+    public  UsuarioRespostaDTO buscarPorId(Long id) {
         return  convertToRespostaUsuario( usuarioRepository.findById(id).get());
     }
 
     @Override
-    public Usuario atualizar(Usuario usuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizar'");
+    public UsuarioRespostaDTO atualizar (Long id, UsuarioFormDTO usuario) {
+        Usuario usuarioSalvo = usuarioRepository.findById(id).get();
+        usuarioSalvo.setNome(usuario.getNome());
+        usuarioSalvo.setCpf(usuario.getCpf());
+        usuarioSalvo.setDataNascimento(usuario.getDataNascimento());
+        usuarioSalvo.setTelefone(usuario.getTelefone());
+        
+        usuarioRepository.save(usuarioSalvo);
+
+        return convertToRespostaUsuario(usuarioSalvo) ;
     }
 
     @Override
@@ -47,7 +54,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario buscaPorCpf(String cpf) {
-        // TODO Auto-generated method stub
+
         throw new UnsupportedOperationException("Unimplemented method 'buscaPorCpf'");
     }
 

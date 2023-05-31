@@ -54,7 +54,7 @@ public class Usuario {
     private List<Canteiro> canteiros;
 
     // relacao N : 1
-    @ManyToOne( )
+    @ManyToOne( cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_LOGIN")
     private Login login;
 
