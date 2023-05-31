@@ -47,7 +47,6 @@ public class PlantaController {
 
     }
 
-
     // put
     @PutMapping("{idPlanta}")
     public ResponseEntity<PlantaRespostaDTO> atualizar(@PathVariable Long idPlanta,
@@ -69,6 +68,5 @@ public class PlantaController {
         }
 
     }
-
 
 }

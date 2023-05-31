@@ -1,5 +1,7 @@
 package br.com.heinz.seucanteiro.service.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,15 @@ public class PlantaServiceImpl implements PlantaService {
     @Override
     public Planta buscaId(Long id) {
        return plantaRepository.findById(id).get();
+    }
+
+
+
+
+
+    @Override
+    public List<Planta> buscaTodos() {
+       return plantaRepository.findAll();
     }
     
 }

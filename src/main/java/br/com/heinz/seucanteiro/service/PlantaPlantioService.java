@@ -1,7 +1,8 @@
 package br.com.heinz.seucanteiro.service;
 
-import br.com.heinz.seucanteiro.dto.PlantaRespostaDTO;
+import java.util.List;
 
+import br.com.heinz.seucanteiro.dto.PlantaRespostaDTO;
 import br.com.heinz.seucanteiro.model.PlantaPlantio;
 
 public interface PlantaPlantioService {
@@ -12,6 +13,8 @@ public interface PlantaPlantioService {
     PlantaRespostaDTO autaliza(  Long idPlanta , PlantaPlantio plantaPlantio);
 
     PlantaPlantio buscaId(Long idPlanta);
+
+    List<PlantaPlantio> buscaTodosDoCanteiro(Long idCanteiro);
 
     
 }

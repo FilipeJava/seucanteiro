@@ -29,7 +29,8 @@ public class Planta {
     private Long id;
 
     @Column(name = "NM_PLANTA")
-    @NotBlank @Size(min = 3)
+    @NotBlank
+    @Size(min = 3)
     private String nome;
 
     @Column(name = "NR_REGACAO")
