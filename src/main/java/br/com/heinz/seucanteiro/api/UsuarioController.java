@@ -3,6 +3,7 @@ package br.com.heinz.seucanteiro.api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,9 +40,10 @@ public class UsuarioController {
     // metodo para salvar usuario recebendo um usuarioFormDTO e um loginFormDTO
     @PostMapping
     public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody @Valid UsuarioLogin usuarioLogin) {
-            
-            log.info("Salvando usuario");
-           return ResponseEntity.ok(usuarioLoginServiceImpl.salvar(usuarioLogin));
+
+        log.info("Salvando usuario");
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioLoginServiceImpl.salvar(usuarioLogin));
 
     }
 
