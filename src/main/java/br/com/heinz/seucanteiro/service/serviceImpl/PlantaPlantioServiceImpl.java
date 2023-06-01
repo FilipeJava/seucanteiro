@@ -33,6 +33,7 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
     @Autowired
     ModelMapper modelMapper;
 
+    // Metdodo PlantaPlantio que salva a planta e o plantio ao mesmo tempo
     @Override
     public PlantaRespostaDTO salvar(Long idCanteiro, PlantaPlantio plantaPlantio) {
 
@@ -57,6 +58,7 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
 
     }
 
+    // Metodo Planta Plantio que atualiza a planta e o plantio ao mesmo tempo
     @Override
     public PlantaRespostaDTO autaliza(Long idPlanta, PlantaPlantio plantaPlantio) {
 
@@ -83,6 +85,8 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
 
     }
 
+    // Metodo que busca a planta e o plantio pelo id, ambos tem o mesmo id pois são
+    // salvos ao mesmo tempo
     @Override
     public PlantaPlantio buscaId(Long idPlanta) {
 
@@ -99,6 +103,7 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
 
     }
 
+    // Metodo que busca todo as plantas e plantios do canteiro
     @Override
     public List<PlantaPlantioRespostaDTO> buscaTodosDoCanteiro(Long idCanteiro) {
         // busca todos os plantios do canteiro
@@ -113,8 +118,6 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
             PlantaPlantioRespostaDTO plantaPlantio = new PlantaPlantioRespostaDTO();
             plantaPlantio.setPlanta(convertToRespostaPlanta(plantio.getPlanta()));
             plantaPlantio.setPlantio(convertToRespostaPlantio(plantio));
-            // plantaPlantio.setPlanta(convertToFormPlanta(plantio.getPlanta()));
-            // plantaPlantio.setPlantio(convertToFormPlantio(plantio));
 
             // adiciono o objeto plantaPlantio na lista
             plantasPlantio.add(plantaPlantio);
@@ -122,7 +125,6 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
 
         return plantasPlantio;
     }
-    
 
     // DTO METHODS
     private Planta convertToEntityPlanta(PlantaFormDTO plantaform) {
@@ -143,8 +145,6 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
 
     }
 
-  
-
     // converte model planta para Plantaformdto
     private PlantaFormDTO convertToFormPlanta(Planta planta) {
         return modelMapper.map(planta, PlantaFormDTO.class);
@@ -154,6 +154,5 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
     private PlantioFormDTO convertToFormPlantio(Plantio plantio) {
         return modelMapper.map(plantio, PlantioFormDTO.class);
     }
-
 
 }

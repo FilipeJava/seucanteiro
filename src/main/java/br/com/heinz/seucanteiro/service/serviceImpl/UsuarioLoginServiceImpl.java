@@ -12,7 +12,6 @@ import br.com.heinz.seucanteiro.model.Usuario;
 import br.com.heinz.seucanteiro.model.UsuarioLogin;
 import br.com.heinz.seucanteiro.service.UsuarioLoginService;
 
-
 @Service
 public class UsuarioLoginServiceImpl implements UsuarioLoginService {
 
@@ -21,42 +20,34 @@ public class UsuarioLoginServiceImpl implements UsuarioLoginService {
 
     @Autowired
     UsuarioServiceImpl usuarioServiceImpl;
-   
+
     @Autowired
     CanteiroServiceImpl canteiroServiceImpl;
 
     @Autowired
     ModelMapper modelMapper;
 
+    // Metodo para salvar usuario e login ao mesmo tempo
     @Override
-    public UsuarioRespostaDTO salvar (UsuarioLogin usuarioLogin) {
+    public UsuarioRespostaDTO salvar(UsuarioLogin usuarioLogin) {
 
         UsuarioFormDTO usuarioform = usuarioLogin.getUsuario();
         LoginFormDTO loginform = usuarioLogin.getLogin();
 
         Login login = convertToEntityLogin(loginform);
 
-         
-            loginServiceImpl.salvar(login);
-   
-       
+        loginServiceImpl.salvar(login);
 
         Usuario usuario = convertToEntityUsuario(usuarioform);
         usuario.setLogin(login);
-        Usuario usuarioCanteiro =usuarioServiceImpl.salvar(usuario);
+        Usuario usuarioCanteiro = usuarioServiceImpl.salvar(usuario);
         canteiroServiceImpl.save(usuarioCanteiro);
 
         return convertToRespostaUsuario(usuario);
 
     }
 
-
-   
-
-
-
-
-      // DTO METHODS
+    // DTO METHODS
     private Usuario convertToEntityUsuario(UsuarioFormDTO usuarioform) {
         return modelMapper.map(usuarioform, Usuario.class);
 
@@ -66,15 +57,9 @@ public class UsuarioLoginServiceImpl implements UsuarioLoginService {
         return modelMapper.map(usuario, UsuarioRespostaDTO.class);
     }
 
-
     private Login convertToEntityLogin(LoginFormDTO loginform) {
         return modelMapper.map(loginform, Login.class);
 
     }
-
-
-
-
-
 
 }
