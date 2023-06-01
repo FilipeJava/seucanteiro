@@ -1,7 +1,7 @@
 package br.com.heinz.seucanteiro.model;
 
-import br.com.heinz.seucanteiro.dto.LoginFormDTO;
-import br.com.heinz.seucanteiro.dto.UsuarioFormDTO;
+import br.com.heinz.seucanteiro.dto.form.LoginFormDTO;
+import br.com.heinz.seucanteiro.dto.form.UsuarioFormDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

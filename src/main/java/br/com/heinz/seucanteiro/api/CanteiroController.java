@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.heinz.seucanteiro.dto.PlantaPlantioRespostaDTO;
-
+import br.com.heinz.seucanteiro.dto.resposta.PlantaPlantioRespostaDTO;
 import br.com.heinz.seucanteiro.service.serviceImpl.PlantaPlantioServiceImpl;
 
 @RestController

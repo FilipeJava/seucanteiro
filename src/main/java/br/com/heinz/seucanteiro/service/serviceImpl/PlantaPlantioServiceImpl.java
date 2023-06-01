@@ -7,11 +7,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.heinz.seucanteiro.dto.PlantaFormDTO;
-import br.com.heinz.seucanteiro.dto.PlantaPlantioRespostaDTO;
-import br.com.heinz.seucanteiro.dto.PlantaRespostaDTO;
-import br.com.heinz.seucanteiro.dto.PlantioFormDTO;
-import br.com.heinz.seucanteiro.dto.PlantioRespostaDTO;
+import br.com.heinz.seucanteiro.dto.form.PlantaFormDTO;
+import br.com.heinz.seucanteiro.dto.form.PlantioFormDTO;
+import br.com.heinz.seucanteiro.dto.resposta.PlantaPlantioRespostaDTO;
+import br.com.heinz.seucanteiro.dto.resposta.PlantaRespostaDTO;
+import br.com.heinz.seucanteiro.dto.resposta.PlantioRespostaDTO;
 import br.com.heinz.seucanteiro.model.Canteiro;
 import br.com.heinz.seucanteiro.model.Planta;
 import br.com.heinz.seucanteiro.model.PlantaPlantio;

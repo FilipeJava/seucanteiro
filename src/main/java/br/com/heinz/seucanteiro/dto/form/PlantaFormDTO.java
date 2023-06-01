@@ -1,6 +1,4 @@
-package br.com.heinz.seucanteiro.dto;
-
-import java.time.LocalDate;
+package br.com.heinz.seucanteiro.dto.form;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,28 +8,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioFormDTO {
+public class PlantaFormDTO {
 
 
     /* Requisiçao post do usuario que vira do front */
 
-   @NotBlank @Size(min = 3)
+    @NotBlank @Size(min = 3)
     private String nome;
 
-   @NotBlank
-    private String cpf;
+    @NotNull
+    private Integer regacao;
 
-   @NotNull
-    private LocalDate dataNascimento;
+  
+    private String nomeCientifico;
 
-   @NotBlank
-    private String telefone;
-
- 
+   
+    private String apelido;
 
     
 }

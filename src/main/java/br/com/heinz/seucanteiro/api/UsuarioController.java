@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.heinz.seucanteiro.dto.UsuarioFormDTO;
-import br.com.heinz.seucanteiro.dto.UsuarioRespostaDTO;
+import br.com.heinz.seucanteiro.dto.form.UsuarioFormDTO;
+import br.com.heinz.seucanteiro.dto.resposta.UsuarioRespostaDTO;
 import br.com.heinz.seucanteiro.model.UsuarioLogin;
 import br.com.heinz.seucanteiro.service.serviceImpl.LoginServiceImpl;
 import br.com.heinz.seucanteiro.service.serviceImpl.UsuarioLoginServiceImpl;

@@ -6,8 +6,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.heinz.seucanteiro.dto.CanteiroFormDTO;
-import br.com.heinz.seucanteiro.dto.CanteiroRespostaDTO;
+import br.com.heinz.seucanteiro.dto.form.CanteiroFormDTO;
+import br.com.heinz.seucanteiro.dto.resposta.CanteiroRespostaDTO;
 import br.com.heinz.seucanteiro.model.Canteiro;
 import br.com.heinz.seucanteiro.model.Usuario;
 import br.com.heinz.seucanteiro.repository.CanteiroRepository;

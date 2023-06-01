@@ -1,4 +1,4 @@
-package br.com.heinz.seucanteiro.dto;
+package br.com.heinz.seucanteiro.dto.resposta;
 
 import java.time.LocalDate;
 
