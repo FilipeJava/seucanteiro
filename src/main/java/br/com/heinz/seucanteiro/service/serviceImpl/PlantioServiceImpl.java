@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.heinz.seucanteiro.model.Planta;
 import br.com.heinz.seucanteiro.model.Plantio;
 import br.com.heinz.seucanteiro.repository.PlantioRepository;
 import br.com.heinz.seucanteiro.service.PlantioService;
@@ -14,6 +15,9 @@ public class PlantioServiceImpl implements PlantioService {
 
     @Autowired
     PlantioRepository plantioRepository;
+
+    @Autowired
+    PlantaServiceImpl plantaServiceImpl;
 
     @Override
     public Plantio salvar(Plantio plantio) {
@@ -34,6 +38,9 @@ public class PlantioServiceImpl implements PlantioService {
       return plantioRepository.findAllByCanteiroId(idCanteiro);
     }
 
-
+    @Override
+    public void deletar(Long idPlanta) {
+        plantioRepository.deleteById(idPlanta);
+    }
 
 }

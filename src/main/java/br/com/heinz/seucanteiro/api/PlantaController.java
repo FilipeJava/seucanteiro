@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,6 +66,17 @@ public class PlantaController {
         {
             log.info("Buscando planta");
             return ResponseEntity.ok(plantaPlantioServiceImpl.buscaId(idPlanta));
+        }
+
+    }
+
+    // delete a planta e o plantio
+    @DeleteMapping("{idPlanta}")
+    public ResponseEntity<?> deletar(@PathVariable Long idPlanta) {
+        {
+            log.info("Deletando planta");
+            plantioServiceImpl.deletar(idPlanta);
+            return ResponseEntity.ok().build();
         }
 
     }

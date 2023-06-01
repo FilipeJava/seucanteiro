@@ -13,4 +13,6 @@ public interface PlantioService {
     Plantio buscaId(Long id);
 
     List<Plantio>buscaTodos();
+
+    void deletar(Long idPlanta);
 }

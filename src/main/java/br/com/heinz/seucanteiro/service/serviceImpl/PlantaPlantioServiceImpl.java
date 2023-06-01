@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.heinz.seucanteiro.dto.PlantaFormDTO;
+import br.com.heinz.seucanteiro.dto.PlantaPlantioRespostaDTO;
 import br.com.heinz.seucanteiro.dto.PlantaRespostaDTO;
 import br.com.heinz.seucanteiro.dto.PlantioFormDTO;
 import br.com.heinz.seucanteiro.dto.PlantioRespostaDTO;
@@ -99,19 +100,21 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
     }
 
     @Override
-    public List<PlantaPlantio> buscaTodosDoCanteiro(Long idCanteiro) {
+    public List<PlantaPlantioRespostaDTO> buscaTodosDoCanteiro(Long idCanteiro) {
         // busca todos os plantios do canteiro
         List<Plantio> plantios = plantioServiceImpl.buscaTodosDoCanteiro(idCanteiro);
 
         // crio lista de plantasPlantio
-        List<PlantaPlantio> plantasPlantio = new ArrayList<PlantaPlantio>();
+        List<PlantaPlantioRespostaDTO> plantasPlantio = new ArrayList<PlantaPlantioRespostaDTO>();
 
         // percorro a lista de plantios e crio um objeto plantaPlantio e seto planta e
         // plantio
         for (Plantio plantio : plantios) {
-            PlantaPlantio plantaPlantio = new PlantaPlantio();
-            plantaPlantio.setPlanta(convertToFormPlanta(plantio.getPlanta()));
-            plantaPlantio.setPlantio(convertToFormPlantio(plantio));
+            PlantaPlantioRespostaDTO plantaPlantio = new PlantaPlantioRespostaDTO();
+            plantaPlantio.setPlanta(convertToRespostaPlanta(plantio.getPlanta()));
+            plantaPlantio.setPlantio(convertToRespostaPlantio(plantio));
+            // plantaPlantio.setPlanta(convertToFormPlanta(plantio.getPlanta()));
+            // plantaPlantio.setPlantio(convertToFormPlantio(plantio));
 
             // adiciono o objeto plantaPlantio na lista
             plantasPlantio.add(plantaPlantio);
@@ -131,14 +134,16 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
         return modelMapper.map(planta, PlantaRespostaDTO.class);
     }
 
+    private PlantioRespostaDTO convertToRespostaPlantio(Plantio plantio) {
+        return modelMapper.map(plantio, PlantioRespostaDTO.class);
+    }
+
     private Plantio convertToEntityPlantio(PlantioFormDTO plantioform) {
         return modelMapper.map(plantioform, Plantio.class);
 
     }
 
-    private PlantioRespostaDTO convertToRespostaPlantio(Plantio plantio) {
-        return modelMapper.map(plantio, PlantioRespostaDTO.class);
-    }
+  
 
     // converte model planta para Plantaformdto
     private PlantaFormDTO convertToFormPlanta(Planta planta) {
@@ -149,5 +154,6 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
     private PlantioFormDTO convertToFormPlantio(Plantio plantio) {
         return modelMapper.map(plantio, PlantioFormDTO.class);
     }
+
 
 }

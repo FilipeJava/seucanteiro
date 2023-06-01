@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.heinz.seucanteiro.model.PlantaPlantio;
+import br.com.heinz.seucanteiro.dto.PlantaPlantioRespostaDTO;
+
 import br.com.heinz.seucanteiro.service.serviceImpl.PlantaPlantioServiceImpl;
 
 @RestController
@@ -21,8 +22,8 @@ public class CanteiroController {
 
     // recuperar todas as plantaplantios de um canteiro
     @GetMapping("{idCanteiro}")
-    public ResponseEntity<List<PlantaPlantio>> buscaTodosDoCanteiro( @PathVariable Long idCanteiro) {
+    public ResponseEntity<List<PlantaPlantioRespostaDTO>> buscaTodosDoCanteiro(@PathVariable Long idCanteiro) {
 
-        return  ResponseEntity.ok(plantaPlantioServiceImpl.buscaTodosDoCanteiro(idCanteiro));
+        return ResponseEntity.ok(plantaPlantioServiceImpl.buscaTodosDoCanteiro(idCanteiro));
     }
 }

@@ -49,4 +49,8 @@ public class Plantio {
     @JoinColumn(name = "ID_PLANTA")
     private Planta planta;
 
+    public Plantio orElseThrow(Object object) {
+        return null;
+    }
+
 }
