@@ -71,10 +71,7 @@ public class CanteiroServiceImpl implements CanteiroService {
 
     }
 
-    private Canteiro convertToEntity(CanteiroFormDTO canteiroForm) {
-        return modelMapper.map(canteiroForm, Canteiro.class);
-
-    }
+    
 
     private CanteiroRespostaDTO convertToResposta(Canteiro canteiro) {
         return modelMapper.map(canteiro, CanteiroRespostaDTO.class);

@@ -19,6 +19,7 @@ import br.com.heinz.seucanteiro.model.UsuarioLogin;
 import br.com.heinz.seucanteiro.service.serviceImpl.LoginServiceImpl;
 import br.com.heinz.seucanteiro.service.serviceImpl.UsuarioLoginServiceImpl;
 import br.com.heinz.seucanteiro.service.serviceImpl.UsuarioServiceImpl;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/usuario")
@@ -37,12 +38,10 @@ public class UsuarioController {
 
     // metodo para salvar usuario recebendo um usuarioFormDTO e um loginFormDTO
     @PostMapping
-    public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody UsuarioLogin usuarioLogin) {
-        {
+    public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody @Valid UsuarioLogin usuarioLogin) {
+            
             log.info("Salvando usuario");
-            return ResponseEntity.ok(usuarioLoginServiceImpl.salvar(usuarioLogin));
-
-        }
+           return ResponseEntity.ok(usuarioLoginServiceImpl.salvar(usuarioLogin));
 
     }
 
@@ -65,8 +64,9 @@ public class UsuarioController {
 
     // metodo para atualizar usuario
     @PutMapping("{id}")
-    public ResponseEntity<UsuarioRespostaDTO> atualizaUsuario(@PathVariable Long id, @RequestBody UsuarioFormDTO usuarioFormDTO) {
-    log.info("Atualizando usuario");
-    return ResponseEntity.ok(usuarioServiceImpl.atualizar( id,usuarioFormDTO));
+    public ResponseEntity<UsuarioRespostaDTO> atualizaUsuario(@PathVariable Long id,
+            @RequestBody UsuarioFormDTO usuarioFormDTO) {
+        log.info("Atualizando usuario");
+        return ResponseEntity.ok(usuarioServiceImpl.atualizar(id, usuarioFormDTO));
     }
 }

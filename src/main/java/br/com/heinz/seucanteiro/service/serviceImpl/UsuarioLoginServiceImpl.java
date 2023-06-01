@@ -6,12 +6,12 @@ import org.springframework.stereotype.Service;
 
 import br.com.heinz.seucanteiro.dto.form.LoginFormDTO;
 import br.com.heinz.seucanteiro.dto.form.UsuarioFormDTO;
-import br.com.heinz.seucanteiro.dto.resposta.LoginRespostaDTO;
 import br.com.heinz.seucanteiro.dto.resposta.UsuarioRespostaDTO;
 import br.com.heinz.seucanteiro.model.Login;
 import br.com.heinz.seucanteiro.model.Usuario;
 import br.com.heinz.seucanteiro.model.UsuarioLogin;
 import br.com.heinz.seucanteiro.service.UsuarioLoginService;
+
 
 @Service
 public class UsuarioLoginServiceImpl implements UsuarioLoginService {
@@ -29,14 +29,17 @@ public class UsuarioLoginServiceImpl implements UsuarioLoginService {
     ModelMapper modelMapper;
 
     @Override
-    public UsuarioRespostaDTO salvar(UsuarioLogin usuarioLogin) {
+    public UsuarioRespostaDTO salvar (UsuarioLogin usuarioLogin) {
 
         UsuarioFormDTO usuarioform = usuarioLogin.getUsuario();
         LoginFormDTO loginform = usuarioLogin.getLogin();
 
         Login login = convertToEntityLogin(loginform);
 
-        loginServiceImpl.salvar(login);
+         
+            loginServiceImpl.salvar(login);
+   
+       
 
         Usuario usuario = convertToEntityUsuario(usuarioform);
         usuario.setLogin(login);
@@ -69,9 +72,6 @@ public class UsuarioLoginServiceImpl implements UsuarioLoginService {
 
     }
 
-    private LoginRespostaDTO convertToRespostaLogin(Login login) {
-        return modelMapper.map(login, LoginRespostaDTO.class);
-    }
 
 
 

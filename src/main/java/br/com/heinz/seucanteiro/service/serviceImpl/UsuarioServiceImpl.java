@@ -58,10 +58,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         throw new UnsupportedOperationException("Unimplemented method 'buscaPorCpf'");
     }
 
-    private Usuario convertToEntityUsuario(UsuarioFormDTO usuarioFormDTO) {
-        return modelMapper.map(usuarioFormDTO, Usuario.class);
-
-    }
 
     private UsuarioRespostaDTO convertToRespostaUsuario(Usuario usuario) {
         return modelMapper.map(usuario, UsuarioRespostaDTO.class);

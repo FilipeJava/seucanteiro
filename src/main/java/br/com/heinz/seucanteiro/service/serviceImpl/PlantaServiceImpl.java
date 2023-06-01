@@ -12,31 +12,22 @@ import br.com.heinz.seucanteiro.service.PlantaService;
 @Service
 public class PlantaServiceImpl implements PlantaService {
 
-    @Autowired
-    PlantaRepository plantaRepository;
+   @Autowired
+   PlantaRepository plantaRepository;
 
+   @Override
+   public Planta salvar(Planta planta) {
+      return plantaRepository.save(planta);
+   }
 
-    @Override
-    public Planta salvar(Planta planta) {
-       return plantaRepository.save(planta);
-    }
+   @Override
+   public Planta buscaId(Long id) {
+      return plantaRepository.findById(id).get();
+   }
 
+   @Override
+   public List<Planta> buscaTodos() {
+      return plantaRepository.findAll();
+   }
 
-  
-
-
-    @Override
-    public Planta buscaId(Long id) {
-       return plantaRepository.findById(id).get();
-    }
-
-
-
-
-
-    @Override
-    public List<Planta> buscaTodos() {
-       return plantaRepository.findAll();
-    }
-    
 }
