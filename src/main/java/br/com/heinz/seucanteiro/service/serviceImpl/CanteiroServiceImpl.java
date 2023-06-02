@@ -29,39 +29,29 @@ public class CanteiroServiceImpl implements CanteiroService {
     public CanteiroRespostaDTO save(Usuario usuario) {
 
         Canteiro canteiro = new Canteiro();
-        
-        canteiro.setNome("Canteiro do " + usuario.getNome());
+
+        canteiro.setNome("Canteiro de " + usuario.getNome());
         canteiro.setUsuario(usuario);
         canteiroRepository.save(canteiro);
-        
+
         return convertToResposta(canteiro);
 
     }
-
-
 
     @Override
     public void delete(Long id) {
         canteiroRepository.deleteById(id);
     }
 
-    
-
     @Override
     public Canteiro findById(Long id) {
         return canteiroRepository.findById(id).get();
     }
 
-
-
     @Override
     public List<Canteiro> getAll() {
         return canteiroRepository.findAll();
     }
-
-
-
-
 
     @Override
     public CanteiroRespostaDTO update(CanteiroFormDTO canteiro, Long id) {
@@ -70,8 +60,6 @@ public class CanteiroServiceImpl implements CanteiroService {
         return convertToResposta(canteiroRepository.save(canteiroAtualizar));
 
     }
-
-    
 
     private CanteiroRespostaDTO convertToResposta(Canteiro canteiro) {
         return modelMapper.map(canteiro, CanteiroRespostaDTO.class);

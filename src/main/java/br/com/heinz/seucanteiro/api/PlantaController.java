@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.heinz.seucanteiro.dto.resposta.PlantaPlantioRespostaDTO;
 import br.com.heinz.seucanteiro.dto.resposta.PlantaRespostaDTO;
 import br.com.heinz.seucanteiro.model.PlantaPlantio;
 import br.com.heinz.seucanteiro.service.serviceImpl.PlantaPlantioServiceImpl;
@@ -60,9 +61,9 @@ public class PlantaController {
 
     }
 
-    // get
+    // get para busca planta plantio por id
     @GetMapping("{idPlanta}")
-    public ResponseEntity<PlantaPlantio> buscarId(@PathVariable Long idPlanta) {
+    public ResponseEntity<PlantaPlantioRespostaDTO> buscarId(@PathVariable Long idPlanta) {
         {
             log.info("Buscando planta");
             return ResponseEntity.ok(plantaPlantioServiceImpl.buscaId(idPlanta));

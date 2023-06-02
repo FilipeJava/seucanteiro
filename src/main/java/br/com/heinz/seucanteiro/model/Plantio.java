@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +31,7 @@ public class Plantio {
 
     @Column(name = "QT_PLANTADA")
     @NotNull
+    @Positive
     private Integer quantidadePlantada;
 
     @Column(name = "DT_PLANTIO")
