@@ -13,7 +13,7 @@ public interface PlantaPlantioService {
 
     PlantaRespostaDTO autaliza(  Long idPlanta , PlantaPlantio plantaPlantio);
 
-    PlantaPlantio buscaId(Long idPlanta);
+    PlantaPlantioRespostaDTO buscaId(Long idPlanta);
 
     List<PlantaPlantioRespostaDTO> buscaTodosDoCanteiro(Long idCanteiro);
 

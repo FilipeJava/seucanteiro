@@ -88,16 +88,16 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
     // Metodo que busca a planta e o plantio pelo id, ambos tem o mesmo id pois são
     // salvos ao mesmo tempo
     @Override
-    public PlantaPlantio buscaId(Long idPlanta) {
+    public PlantaPlantioRespostaDTO buscaId(Long idPlanta) {
 
         // busco planta e plantio pelo id
         Planta planta = plantaServiceImpl.buscaId(idPlanta);
         Plantio plantio = plantioServiceImpl.buscaId(idPlanta);
 
         // crio objeto plantaPlantio e seto planta e plantio
-        PlantaPlantio plantaPlantio = new PlantaPlantio();
-        plantaPlantio.setPlanta(convertToFormPlanta(planta));
-        plantaPlantio.setPlantio(convertToFormPlantio(plantio));
+        PlantaPlantioRespostaDTO plantaPlantio = new PlantaPlantioRespostaDTO();
+        plantaPlantio.setPlanta(convertToRespostaPlanta(planta));
+        plantaPlantio.setPlantio(convertToRespostaPlantio(plantio));
 
         return plantaPlantio;
 
