@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,11 +31,12 @@ public class Planta {
 
     @Column(name = "NM_PLANTA")
     @NotBlank
-    @Size(min = 3)
+    @Size(min = 3, max = 100)
     private String nome;
 
     @Column(name = "NR_REGACAO")
     @NotNull
+    @Positive
     private Integer regacao;
 
     @Column(name = "NM_CIENTIFICO")

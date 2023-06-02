@@ -34,7 +34,7 @@ public class Usuario {
 
     @Column(name = "NM_USUARIO")
     @NotBlank
-    @Size(min = 3)
+    @Size(min = 3 , max = 200)
     private String nome;
 
     @Column(name = "DS_CPF")

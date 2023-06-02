@@ -31,16 +31,17 @@ public class Canteiro {
     private Long id;
 
     @Column(name = "NM_CANTEIRO")
-    @NotBlank @Size(min = 3)
+    @NotBlank
+    @Size(min = 3)
     private String nome;
 
     // relacao N : 1
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_USUARIO", nullable = true)
+    @JoinColumn(name = "ID_USUARIO")
     private Usuario usuario;
 
     // relacao 1 : N
-    @OneToMany(mappedBy = "canteiro",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "canteiro", cascade = CascadeType.ALL)
     private List<Plantio> plantios;
 
 }

@@ -19,7 +19,7 @@ public class UsuarioFormDTO {
 
     /* Requisiçao post do usuario que vira do front */
 
-   @NotBlank @Size(min = 3)
+   @NotBlank @Size(min = 3,max = 200)
     private String nome;
 
    @NotBlank
