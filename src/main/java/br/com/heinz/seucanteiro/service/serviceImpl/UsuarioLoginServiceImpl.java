@@ -2,6 +2,7 @@ package br.com.heinz.seucanteiro.service.serviceImpl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.heinz.seucanteiro.dto.form.LoginFormDTO;
@@ -25,6 +26,9 @@ public class UsuarioLoginServiceImpl implements UsuarioLoginService {
     CanteiroServiceImpl canteiroServiceImpl;
 
     @Autowired
+    PasswordEncoder encoder;
+
+    @Autowired
     ModelMapper modelMapper;
 
     // Metodo para salvar usuario e login ao mesmo tempo
@@ -33,6 +37,7 @@ public class UsuarioLoginServiceImpl implements UsuarioLoginService {
 
         UsuarioFormDTO usuarioform = usuarioLogin.getUsuario();
         LoginFormDTO loginform = usuarioLogin.getLogin();
+        loginform.setSenha(encoder.encode(loginform.getSenha()));
 
         Login login = convertToEntityLogin(loginform);
 
