@@ -1,11 +1,13 @@
 package br.com.heinz.seucanteiro.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.heinz.seucanteiro.model.Login;
 
 public interface LoginRepository extends JpaRepository<Login, Long> {
 
-    Login findByEmail(String email);
+    Optional<Login> findByEmail(String email);
     
 }

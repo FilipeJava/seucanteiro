@@ -22,7 +22,7 @@ public class LoginFormDTO {
     @Email
     private String email;
 
-    @NotBlank @Size(min = 8, max = 16)
+    @NotBlank 
     private String senha;
 
    

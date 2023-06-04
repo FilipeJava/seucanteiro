@@ -1,5 +1,7 @@
 package br.com.heinz.seucanteiro.service.serviceImpl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +23,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Login buscarPorEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorEmail'");
+        return loginRepository.findByEmail(email).orElseThrow(() -> new RestNotFoundException("Login não encontrado"));
     }
 
     @Override
@@ -38,8 +39,10 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Login atualizaLogin(Login login) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizaLogin'");
+        var loginAtualizado = buscaLogin(login.getId());
+        loginAtualizado.setEmail(login.getEmail());
+        loginAtualizado.setSenha(login.getSenha());
+        return loginRepository.save(loginAtualizado);
     }
 
   
