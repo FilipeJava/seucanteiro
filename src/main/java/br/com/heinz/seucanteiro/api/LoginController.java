@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.heinz.seucanteiro.model.Credencial;
 import br.com.heinz.seucanteiro.model.Login;
-import br.com.heinz.seucanteiro.repository.LoginRepository;
 import br.com.heinz.seucanteiro.service.SecurityService.TokenService;
 import br.com.heinz.seucanteiro.service.serviceImpl.LoginServiceImpl;
 import jakarta.validation.Valid;

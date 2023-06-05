@@ -129,7 +129,7 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
 
 
     // metodo que busca todas as plantas e plantios
-    // nao será necessario para o sistema mobile , mas é para atender requisitos da Global Solution
+    // nao será necessario para o sistema mobile , mas é para atender requisitos da Global Solution JPQ
     @Override
     public List<PlantaPlantioRespostaDTO> buscaTodos() {
         // busca todos os plantios
