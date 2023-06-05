@@ -25,4 +25,6 @@ public class CanteiroController {
 
         return ResponseEntity.ok(plantaPlantioServiceImpl.buscaTodosDoCanteiro(idCanteiro));
     }
+
+    
 }

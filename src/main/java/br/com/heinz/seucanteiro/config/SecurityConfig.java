@@ -33,7 +33,7 @@ public class SecurityConfig {
             .and()
             .formLogin().disable()
             .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
-            
+          
             .build();
     }
 

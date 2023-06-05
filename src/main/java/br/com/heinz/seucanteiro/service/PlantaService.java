@@ -2,6 +2,9 @@ package br.com.heinz.seucanteiro.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import br.com.heinz.seucanteiro.model.Planta;
 
 public interface PlantaService {
@@ -10,6 +13,8 @@ public interface PlantaService {
 
     Planta buscaId(Long id);
 
-    List<Planta> buscaTodos();
+    Page<Planta> buscaTodos(Pageable pageable);
+
+    Page<Planta> findNomeContem(String nome, Pageable pageable);
 
 }

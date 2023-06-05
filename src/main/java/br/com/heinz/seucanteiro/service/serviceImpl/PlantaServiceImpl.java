@@ -3,6 +3,8 @@ package br.com.heinz.seucanteiro.service.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.heinz.seucanteiro.exception.RestNotFoundException;
@@ -30,8 +32,12 @@ public class PlantaServiceImpl implements PlantaService {
 
    // Metodo Para Buscar Todos as Plantas
    @Override
-   public List<Planta> buscaTodos() {
-      return plantaRepository.findAll();
+   public Page<Planta>buscaTodos( Pageable pageable) {
+      return plantaRepository.findAll( pageable);
    }
+
+   @Override
+   public Page<Planta> findNomeContem(String nome, Pageable pageable) {
+      return plantaRepository.findByNomeContaining(nome, pageable);  }
 
 }

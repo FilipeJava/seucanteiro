@@ -1,5 +1,7 @@
 package br.com.heinz.seucanteiro.service;
 
+import br.com.heinz.seucanteiro.dto.form.LoginFormDTO;
+import br.com.heinz.seucanteiro.dto.resposta.LoginRespostaDTO;
 import br.com.heinz.seucanteiro.model.Login;
 
 public interface LoginService {
@@ -12,6 +14,6 @@ public interface LoginService {
 
     void deletaLogin(Long id);
 
-    Login atualizaLogin(Long id,Login login);
+    LoginRespostaDTO atualizaLogin(Long id, LoginFormDTO login);
 
 }

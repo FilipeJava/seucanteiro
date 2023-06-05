@@ -1,8 +1,11 @@
 package br.com.heinz.seucanteiro.service.serviceImpl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.heinz.seucanteiro.dto.form.LoginFormDTO;
+import br.com.heinz.seucanteiro.dto.resposta.LoginRespostaDTO;
 import br.com.heinz.seucanteiro.exception.RestNotFoundException;
 import br.com.heinz.seucanteiro.model.Login;
 import br.com.heinz.seucanteiro.repository.LoginRepository;
@@ -13,6 +16,9 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     private LoginRepository loginRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public Login salvar(Login login) {
@@ -36,13 +42,26 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public Login atualizaLogin( Long id ,Login login) {
+    public LoginRespostaDTO atualizaLogin( Long id ,LoginFormDTO login) {
         var loginAtualizado = buscaLogin(id);
         loginAtualizado.setEmail(login.getEmail());
         loginAtualizado.setSenha(login.getSenha());
-        return loginRepository.save(loginAtualizado);
+        return convertToRespostaLogin(salvar(loginAtualizado));
+
+
     }
 
+
+
+    private Login convertToEntityLogin(LoginFormDTO loginform) {
+        return modelMapper.map(loginform, Login.class);
+
+    }
+
+    private LoginRespostaDTO convertToRespostaLogin(Login login) {
+        return modelMapper.map(login, LoginRespostaDTO.class);
+
+    }
   
 
 }
