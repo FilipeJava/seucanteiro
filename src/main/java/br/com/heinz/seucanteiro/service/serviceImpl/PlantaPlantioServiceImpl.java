@@ -126,6 +126,34 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
         return plantasPlantio;
     }
 
+
+
+    // metodo que busca todas as plantas e plantios
+    // nao será necessario para o sistema mobile , mas é para atender requisitos da Global Solution
+    @Override
+    public List<PlantaPlantioRespostaDTO> buscaTodos() {
+        // busca todos os plantios
+        List<Plantio> plantios = plantioServiceImpl.buscaTodos();
+
+        // crio lista de plantasPlantio
+        List<PlantaPlantioRespostaDTO> plantasPlantio = new ArrayList<PlantaPlantioRespostaDTO>();
+
+        // percorro a lista de plantios e crio um objeto plantaPlantio e seto planta e
+        // plantio
+        for (Plantio plantio : plantios) {
+            PlantaPlantioRespostaDTO plantaPlantio = new PlantaPlantioRespostaDTO();
+            plantaPlantio.setPlanta(convertToRespostaPlanta(plantio.getPlanta()));
+            plantaPlantio.setPlantio(convertToRespostaPlantio(plantio));
+
+            // adiciono o objeto plantaPlantio na lista
+            plantasPlantio.add(plantaPlantio);
+        }
+
+        return plantasPlantio;
+    }
+
+
+    
     // DTO METHODS
     private Planta convertToEntityPlanta(PlantaFormDTO plantaform) {
         return modelMapper.map(plantaform, Planta.class);
@@ -154,5 +182,7 @@ public class PlantaPlantioServiceImpl implements PlantaPlantioService {
     private PlantioFormDTO convertToFormPlantio(Plantio plantio) {
         return modelMapper.map(plantio, PlantioFormDTO.class);
     }
+
+   
 
 }

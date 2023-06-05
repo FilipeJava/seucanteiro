@@ -82,4 +82,14 @@ public class PlantaController {
 
     }
 
+    // get para busca todas as plantas plantio 
+    @GetMapping()
+    public ResponseEntity<?> buscarTodos() {
+        {
+            log.info("Buscando todas as plantas");
+            return ResponseEntity.ok(plantaPlantioServiceImpl.buscaTodos());
+        }
+
+    }
+
 }
