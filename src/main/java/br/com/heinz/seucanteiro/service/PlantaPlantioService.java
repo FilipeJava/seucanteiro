@@ -17,5 +17,7 @@ public interface PlantaPlantioService {
 
     List<PlantaPlantioRespostaDTO> buscaTodosDoCanteiro(Long idCanteiro);
 
+    List<PlantaPlantioRespostaDTO> buscaTodos();
+
     
 }

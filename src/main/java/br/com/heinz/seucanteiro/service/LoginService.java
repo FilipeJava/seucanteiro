@@ -12,6 +12,6 @@ public interface LoginService {
 
     void deletaLogin(Long id);
 
-    Login atualizaLogin(Login login);
+    Login atualizaLogin(Long id,Login login);
 
 }

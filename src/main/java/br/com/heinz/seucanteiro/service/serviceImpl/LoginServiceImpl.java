@@ -38,8 +38,8 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public Login atualizaLogin(Login login) {
-        var loginAtualizado = buscaLogin(login.getId());
+    public Login atualizaLogin( Long id ,Login login) {
+        var loginAtualizado = buscaLogin(id);
         loginAtualizado.setEmail(login.getEmail());
         loginAtualizado.setSenha(login.getSenha());
         return loginRepository.save(loginAtualizado);
