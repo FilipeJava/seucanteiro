@@ -26,10 +26,10 @@ public class TokenService {
 
     public Token generateToken(@Valid Credencial credencial) {
         Algorithm alg = Algorithm.HMAC256(secret);
-        
+
         Login user = loginRepository.findByEmail(credencial.email())
                 .orElseThrow(() -> new JWTVerificationException("Usuário não encontrado"));
-        
+
         String token = JWT.create()
                 .withClaim("id", user.getId().toString())
                 .withClaim("email", user.getEmail())
@@ -44,7 +44,7 @@ public class TokenService {
         Algorithm alg = Algorithm.HMAC256(secret);
         var jwtVerifier = JWT.require(alg).withIssuer("SeuCanteiro").build();
         var jwt = jwtVerifier.verify(token);
-        
+
         String userId = jwt.getClaim("id").asString();
         String email = jwt.getClaim("email").asString();
 

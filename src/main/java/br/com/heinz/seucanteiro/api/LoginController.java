@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.heinz.seucanteiro.model.Credencial;
 import br.com.heinz.seucanteiro.model.Login;
-import br.com.heinz.seucanteiro.repository.LoginRepository;
 import br.com.heinz.seucanteiro.service.SecurityService.TokenService;
 import br.com.heinz.seucanteiro.service.serviceImpl.LoginServiceImpl;
 import jakarta.validation.Valid;
@@ -32,20 +31,20 @@ public class LoginController {
 
     Logger log = LoggerFactory.getLogger(LoginController.class);
 
+    // metodo de autenticacao
     @PostMapping("/api/v1/login")
     public ResponseEntity<Object> login(@RequestBody @Valid Credencial credencial) {
         manager.authenticate(credencial.toAuthentication());
         var token = tokenService.generateToken(credencial);
-        
 
         return ResponseEntity.ok(token);
     }
 
-
+    // metodo para atualizar login isoladamente
     @PutMapping("/api/v1/login/{id}")
-    public ResponseEntity<Object> atualizar(@PathVariable Long id,@RequestBody @Valid Login login) {
+    public ResponseEntity<Object> atualizar(@PathVariable Long id, @RequestBody @Valid Login login) {
         log.info("Atualizando login");
         return ResponseEntity.ok(loginServiceImpl.atualizaLogin(id, login));
     }
-    
+
 }

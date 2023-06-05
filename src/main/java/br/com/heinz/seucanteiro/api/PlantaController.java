@@ -1,8 +1,11 @@
 package br.com.heinz.seucanteiro.api;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,20 +39,23 @@ public class PlantaController {
 
     Logger log = LoggerFactory.getLogger(UsuarioController.class);
 
-    // post
+    // post para criar planta e plantio ao mesmo tempo
 
     @PostMapping("{idCanteiro}")
     public ResponseEntity<PlantaRespostaDTO> salvar(@PathVariable Long idCanteiro,
             @RequestBody PlantaPlantio plantaPlantio) {
-        {
-            log.info("Salvando planta");
-            return ResponseEntity.ok(plantaPlantioServiceImpl.salvar(idCanteiro, plantaPlantio));
 
-        }
+        log.info("Salvando planta");
+
+        return ResponseEntity.ok(plantaPlantioServiceImpl.salvar(idCanteiro, plantaPlantio));
+
+        // return
+        // ResponseEntity.status(HttpStatus.CREATED).body(plantaPlantioServiceImpl.salvar(idCanteiro,
+        // plantaPlantio));
 
     }
 
-    // put
+    // put para atualizar planta e plantio ao mesmo tempo
     @PutMapping("{idPlanta}")
     public ResponseEntity<PlantaRespostaDTO> atualizar(@PathVariable Long idPlanta,
             @RequestBody PlantaPlantio plantaPlantio) {
@@ -71,20 +77,20 @@ public class PlantaController {
 
     }
 
-    // delete a planta e o plantio
+    // delete a planta e o plantio que por cascade é deletado junto
     @DeleteMapping("{idPlanta}")
     public ResponseEntity<?> deletar(@PathVariable Long idPlanta) {
         {
             log.info("Deletando planta");
             plantioServiceImpl.deletar(idPlanta);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.noContent().build();
         }
 
     }
 
-    // get para busca todas as plantas plantio 
+    // get para busca todas as plantas plantio
     @GetMapping()
-    public ResponseEntity<?> buscarTodos() {
+    public ResponseEntity<List<PlantaPlantioRespostaDTO>> buscarTodos() {
         {
             log.info("Buscando todas as plantas");
             return ResponseEntity.ok(plantaPlantioServiceImpl.buscaTodos());
