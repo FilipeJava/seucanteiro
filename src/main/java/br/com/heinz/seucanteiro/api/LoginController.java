@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.heinz.seucanteiro.dto.form.LoginFormDTO;
 import br.com.heinz.seucanteiro.model.Credencial;
 import br.com.heinz.seucanteiro.model.Login;
 import br.com.heinz.seucanteiro.service.SecurityService.TokenService;
@@ -42,7 +43,7 @@ public class LoginController {
 
     // metodo para atualizar login isoladamente
     @PutMapping("/api/v1/login/{id}")
-    public ResponseEntity<Object> atualizar(@PathVariable Long id, @RequestBody @Valid Login login) {
+    public ResponseEntity<Object> atualizar(@PathVariable Long id, @RequestBody @Valid LoginFormDTO login) {
         log.info("Atualizando login");
         return ResponseEntity.ok(loginServiceImpl.atualizaLogin(id, login));
     }
