@@ -32,20 +32,20 @@ public class LoginController {
 
     Logger log = LoggerFactory.getLogger(LoginController.class);
 
+    // metodo de autenticacao
     @PostMapping("/api/v1/login")
     public ResponseEntity<Object> login(@RequestBody @Valid Credencial credencial) {
         manager.authenticate(credencial.toAuthentication());
         var token = tokenService.generateToken(credencial);
-        
 
         return ResponseEntity.ok(token);
     }
 
-
+    // metodo para atualizar login isoladamente
     @PutMapping("/api/v1/login/{id}")
-    public ResponseEntity<Object> atualizar(@PathVariable Long id,@RequestBody @Valid Login login) {
+    public ResponseEntity<Object> atualizar(@PathVariable Long id, @RequestBody @Valid Login login) {
         log.info("Atualizando login");
         return ResponseEntity.ok(loginServiceImpl.atualizaLogin(id, login));
     }
-    
+
 }

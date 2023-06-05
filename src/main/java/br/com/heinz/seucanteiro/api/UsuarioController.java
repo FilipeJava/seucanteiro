@@ -54,17 +54,16 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioServiceImpl.buscarPorId(id));
     }
 
-    // metodo para deletar usuario por id
+    // metodo para deletar usuario por id que por cascade deleta o login
     @DeleteMapping("{id}")
     public ResponseEntity<UsuarioRespostaDTO> deletar(@PathVariable Long id) {
         log.info("Deletando usuario por id");
         usuarioServiceImpl.deletarPorId(id);
-        // loginServiceImpl.deletarPorId(id);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
-    // metodo para atualizar usuario
+    // metodo para atualizar usuario isoladamente
     @PutMapping("{id}")
     public ResponseEntity<UsuarioRespostaDTO> atualizaUsuario(@PathVariable Long id,
             @RequestBody UsuarioFormDTO usuarioFormDTO) {

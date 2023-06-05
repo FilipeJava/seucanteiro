@@ -33,7 +33,7 @@ public class Login implements UserDetails {
     @Column(name = "ID_LOGIN")
     private Long id;
 
-    @Column(name = "DS_EMAIL")
+    @Column(name = "DS_EMAIL", unique = true)
     @NotBlank
     @Email
     private String email;

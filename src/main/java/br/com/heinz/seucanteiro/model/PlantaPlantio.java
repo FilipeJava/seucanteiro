@@ -16,8 +16,4 @@ public class PlantaPlantio {
     private PlantaFormDTO planta;
     private PlantioFormDTO plantio;
 
-    
-    
 }
-
-

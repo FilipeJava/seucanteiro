@@ -49,4 +49,9 @@ public class Planta {
     @OneToMany(mappedBy = "planta")
     private List<Plantio> plantios;
 
+
+
+   
+
+
 }

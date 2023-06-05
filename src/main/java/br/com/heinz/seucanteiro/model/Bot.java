@@ -1,40 +1,36 @@
 package br.com.heinz.seucanteiro.model;
 
-import java.time.LocalDate;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "T_CAN_RESPOSTA_BOT")
-public class RespostaBot {
+@Entity(name = "T_CAN_BOT")
+public class Bot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_RESPOSTA_BOT")
-    private long id;
-    
-    @Column(name = "DS_MENSAGEM")
-    private String resposta;
+    @Column(name = "ID_BOT")
+    private Long id;
 
-    @Column(name = "DT_RESPOSTA")
-    private LocalDate retorno;
+    @Column(name = "DS_NOME_BOT")
+    private String nome;
 
-    @ManyToOne
-    @JoinColumn(name = "ID_INTERACAO")
+    @Column(name = "DS_VERSAO")
+    private String descricao;
+
+    @OneToOne(mappedBy = "bot", cascade = CascadeType.ALL)
     private Interacao interacao;
 
 }
