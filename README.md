@@ -16,7 +16,7 @@ Através dessas funcionalidades, o aplicativo Seu Canteiro permite que os usuár
     - Picth de negocio [aqui]
     - Funcionamento [aqui]
     - Mobile [aqui]
-    - VM Devops [aqui]
+    - VM Devops (https://youtu.be/vPYzvcIRrBU)
  
 --------------------------
 
