@@ -56,7 +56,8 @@ Através dessas funcionalidades, o aplicativo Seu Canteiro permite que os usuár
     - buscar todas as Plantas e Plantio pelo id canteiro
 --------------------------
 
----------------------------
+## Orientações
+    - somente a requisição de Cadastro de Usuario ,  e login estão disponíveis sem autenticação , portanto caso ultilize o postman para testes , registre um usuario realize o login , copie o tokem e coloque no cabeçalho das requisições.
 
 
 ### Usuario Controller
@@ -70,33 +71,458 @@ Através dessas funcionalidades, o aplicativo Seu Canteiro permite que os usuár
 
 | campo | tipo | obrigatório | descrição 
 |-------|------|:-------------:|---
-|valor | decimal | sim | o valor da despesa, deve ser maior que zero
-
+|nome | String | sim | o nome do usuario deve ser entre 3 a 200
+|cpf | String | sim | o cpf do usuario deve ser no formato xxxxxxxxx-xx
+|dataNascimento | LocalDate | sim | a data do usuario deve ser no formato YYYY-MM-DD
+|telefone | String | sim | o telefone do usuraio 
 
 - Login
 
 | campo | tipo | obrigatório | descrição 
 |-------|------|:-------------:|---
-|valor | decimal | sim | o valor da despesa, deve ser maior que zero
+|email | String | sim | o valor do email, unico
+|senha | String | sim | o senha nao pode ser nula e vai ser criptografada
 
 
 **Exemplo de corpo de requisição**
 
 ```js
 {
-    "valor": 100.00,
-    "data": "2023-02-27",
-    "conta_id": 1,
-    "categoria_id": 1,
-    "{% base64 'encode', 'normal', '' %}scricao": "cinema - homem aranha"
+  "usuario": {
+    "nome": "Usuario Fiap",
+    "cpf":"196364790-46",
+    "dataNascimento": "1998-04-10",
+    "telefone":"911262759"
+  },
+  "login": {
+    "email": "usuario.fiap@example.com",
+    "senha": "12345678"
+  }
 }
+
 ```
 
 **Códigos de Respostas**
 
 | código | descrição
 |-|-
-| 201 | despesa cadastrada com sucesso
+| 201 | Usuario Salvo
 | 400 | campos inválidos
-
 ----
+
+
+### Detalhes do Usuario - buscar por id (Apenas os Dados do Usuario) 
+
+`GET` /api/v1/usuario{id} - requer autenticação
+
+**Exemplo de corpo de resposta**
+
+```js
+
+{
+    "id": 1,
+    "nome": "Usuario Fiap",
+    "cpf": "196364790-46",
+    "dataNascimento": "1998-04-10",
+    "telefone": "911262759"
+}
+
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 200 | dados do usuario  retornados
+| 404 | não existe  com o id informado
+------------------
+### Deleta usuario por id 
+
+`DELETE` /api/v1/usuario{id} - requer autenticação
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 204 | Usuario deletado
+| 403 | não autorizado
+----
+
+
+
+`PUT` /api/v1/usuario/{id} - requer autenticação
+
+**Campos da Requisição**
+
+- Usuario
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+|nome | String | sim | o nome do usuario deve ser entre 3 a 200
+|cpf | String | sim | o cpf do usuario deve ser no formato xxxxxxxxx-xx
+|dataNascimento | LocalDate | sim | a data do usuario deve ser no formato YYYY-MM-DD
+|telefone | String | sim | o telefone do usuraio 
+
+
+
+**Exemplo de corpo de requisição**
+
+```js
+{
+ 
+    "nome": "Usuario Fiap",
+    "cpf":"196364790-46",
+    "dataNascimento": "1998-04-10",
+    "telefone":"911262759"
+ 
+}
+
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 200 | Usuario Salvo
+| 400 | campos inválidos
+----
+
+### Login Controller - login(Metodo de autenticação JWT)
+
+
+`POST` /api/v1/login -não requer autenticação
+
+**Campos da Requisição**
+
+ **Exemplo de corpo de requisição**
+
+```js
+{
+    "email": "usuario.fiap@example.com",
+    "senha": "12345678"
+  }
+
+```  
+
+
+**Resposta da  Requisição** - O Token deve ir em todos os cabeçalhos das demais requisições para autorizar
+
+```js
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJlbWFpbCI6InVzdWFyaW8uZmlhcEBleGFtcGxlLmNvbSIsImlzcyI6IlNldUNhbnRlaXJvIiwiZXhwIjoxNjg2MDczMDYxfQ.jUVpPpyqIarDJVqbC1d60Eqto1newaMgN4o1ELLOhTs",
+    "type": "JWT",
+    "prefix": "Bearer "
+}
+
+```   
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 200 | Usuario Logado
+| 403 | não autorizado
+----
+
+### Atulizar (Atualiza o login)
+
+`PUT` /api/v1/login/{id} - requer autenticação
+
+**Campos da Requisição**
+
+- Login
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+|email | String | sim | o valor do email, unico
+|senha | String | sim | o senha nao pode ser nula e vai ser criptografada
+
+
+
+**Exemplo de corpo de requisição**
+
+```js
+ {
+    "email": "usuario.fiap@example.com",
+    "senha": "12345678"
+  }
+
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 200 | Login atualizado 
+| 400 | campos inválidos
+----
+----------
+---------------
+
+### Planta Controller
+
+
+`POST` /api/v1/planta/{idCanteiro}  -requer autenticação (id canteiro é o mesmo do usuario pois foram criados juntos)
+
+
+**Campos da Requisição**
+
+- Planta
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+|nome | String | sim | o sera definido pelo sistema 
+|regacao | Integer | sim | a frequencia de regagem deve ser maior que zero
+|nomeCientifico | String | não | nome cinetifico da planta 
+|apelido | String | não | apelido para sua planta 
+
+
+- Plantio
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+|quantidadePlantada | Integer | sim |o valor de quantas plantas plantadas
+|dataPlantio | Localdate | sim | data plantio no formato YYYY-MM-DD
+|dataColheita | Localdate | não | data colheita no formato YYYY-MM-DD
+
+
+
+**Exemplo de corpo de requisição**
+
+```js
+{
+  "planta": {
+    "nome": "Batata",
+    "regacao":3,
+    "nomeCientifico": "Lumbricsbatats",
+    "apelido":"zeca"
+  },
+  "plantio": {
+    "quantidadePlantada": 100,
+    "dataPlantio": "2023-05-30",
+    "dataColheita": "2023-05-30"
+  }
+}
+
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 201 | Planta Salva
+| 400 | campos inválidos
+----
+
+
+### Atualiza Planta
+
+`PUT` /api/v1/planta/{idPlanta}  -requer autenticação (id planta é o mesmo do plantio pois foram criados juntos)
+
+
+**Campos da Requisição**
+
+- Planta
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+|nome | String | sim | o sera definido pelo sistema 
+|regacao | Integer | sim | a frequencia de regagem deve ser maior que zero
+|nomeCientifico | String | não | nome cinetifico da planta 
+|apelido | String | não | apelido para sua planta 
+
+
+- Plantio
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+|quantidadePlantada | Integer | sim |o valor de quantas plantas plantadas
+|dataPlantio | Localdate | sim | data plantio no formato YYYY-MM-DD
+|dataColheita | Localdate | não | data colheita no formato YYYY-MM-DD
+
+
+
+**Exemplo de corpo de requisição**
+
+```js
+{
+  "planta": {
+    "nome": "Batata",
+    "regacao":3,
+    "nomeCientifico": "Lumbricsbatats",
+    "apelido":"zeca"
+  },
+  "plantio": {
+    "quantidadePlantada": 100,
+    "dataPlantio": "2023-05-30",
+    "dataColheita": "2023-05-30"
+  }
+}
+
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 200| Planta Atualizada
+| 400 | campos inválidos
+----
+
+### BuscaId Planta
+
+`GET` /api/v1/planta/{idPlanta}  - requer autenticação
+
+**Exemplo de corpo de resposta**
+
+```js
+
+{
+    "planta": {
+        "id": 1,
+        "nome": "Batata",
+        "regacao": 3,
+        "nomeCientifico": "Lumbricsbatats",
+        "apelido": "zeca"
+    },
+    "plantio": {
+        "id": 1,
+        "quantidadePlantada": 100,
+        "dataPlantio": "2023-05-30",
+        "dataColheita": "2023-05-30"
+    }
+}
+
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|- 
+| 200 | dados planta plantio retornados
+| 404 | não existe  com o id informado
+------------------
+
+### Deleta usuario por id 
+
+`DELETE` /api/v1/planta/{idPlanta}  - requer autenticação
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 204 | Planta(Plantio) deletado
+| 403 | não autorizado
+----
+
+### buscar todos 
+
+`GET` /api/v1/planta  - requer autenticação (metodo criado apenas para satisfazer critérios de prova , não terá aplicação no app mobile)
+
+**Exemplo de corpo de resposta**
+
+```js
+
+[
+    {
+        "planta": {
+            "id": 1,
+            "nome": "Batata",
+            "regacao": 3,
+            "nomeCientifico": "Lumbricsbatats",
+            "apelido": "zeca"
+        },
+        "plantio": {
+            "id": 1,
+            "quantidadePlantada": 100,
+            "dataPlantio": "2023-05-30",
+            "dataColheita": "2023-05-30"
+        }
+    },
+    {
+        "planta": {
+            "id": 2,
+            "nome": "Batata",
+            "regacao": 3,
+            "nomeCientifico": "Lumbricsbatats",
+            "apelido": "zeca"
+        },
+        "plantio": {
+            "id": 2,
+            "quantidadePlantada": 100,
+            "dataPlantio": "2023-05-30",
+            "dataColheita": "2023-05-30"
+        }
+    }
+]
+
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 200 | Todos planta plantios  retornados
+---
+
+### index Busca e Paginação
+
+`GET` /api/v1/planta/page?nome=Tomate - requer autenticação , metodo criado apenas para atender entrega gs sem aplicação no app
+
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 200 | Todos planta plantios retornados com o nome "exemplo"
+---
+
+### Canteiro controller
+
+`GET` /api/v1/canteiro/{idCanteiro}  - requer autenticação (metodo retorna todos os plantas plantio do usuario pelo id do canteiro que é o mesmo de usuario pois foram criados juntos)
+
+**Exemplo de corpo de resposta**
+
+```js
+
+[
+    {
+        "planta": {
+            "id": 1,
+            "nome": "Abobora",
+            "regacao": 3,
+            "nomeCientifico": "Lumbricsbatats",
+            "apelido": "zeca"
+        },
+        "plantio": {
+            "id": 1,
+            "quantidadePlantada": 100,
+            "dataPlantio": "2023-05-30",
+            "dataColheita": "2023-05-30"
+        }
+    },
+    {
+        "planta": {
+            "id": 2,
+            "nome": "Tomate",
+            "regacao": 3,
+            "nomeCientifico": "Lumbricsbatats",
+            "apelido": "zeca"
+        },
+        "plantio": {
+            "id": 2,
+            "quantidadePlantada": 100,
+            "dataPlantio": "2023-05-30",
+            "dataColheita": "2023-05-30"
+        }
+    }
+]
+
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 200 | Todos planta plantios retornados
+---
