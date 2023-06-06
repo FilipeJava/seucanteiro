@@ -103,29 +103,17 @@ public class PlantaController {
 
     }
 
+    // get para busca todas as plantas plantio tem paginação e busca por nome para
+    // atender as requisições da GS mas não será implantada no app
 
     @GetMapping("/page")
-    public PagedModel<Planta> index(
-        @RequestParam(required = false) String nome,@PageableDefault(size = 5) Pageable pageable) {
-        Page<Planta> plantas = (nome == null)?
-            plantaServiceImpl.buscaTodos(pageable):
-            plantaServiceImpl.findNomeContem(nome, pageable);
+    public Page<Planta> index(
+            @RequestParam(required = false) String nome, @PageableDefault(size = 5) Pageable pageable) {
+        Page<Planta> plantas = (nome == null) ? plantaServiceImpl.buscaTodos(pageable)
+                : plantaServiceImpl.findNomeContem(nome, pageable);
 
-        return  (PagedModel<Planta>) plantas;
-    } 
+        return plantas;
 
-
+    }
 
 }
-
-
-// @GetMapping
-// public PagedModel<EntityModel<Object>> index(
-//     @RequestParam(required = false) String descricao, 
-//     @ParameterObject @PageableDefault(size = 5) Pageable pageable) {
-//     Page<Despesa> despesas = (descricao == null)?
-//         repository.findAll(pageable):
-//         repository.findByDescricaoContaining(descricao, pageable);
-
-//     return assembler.toModel(despesas.map(Despesa::toEntityModel));
-// }
