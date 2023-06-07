@@ -14,7 +14,7 @@ Através dessas funcionalidades, o aplicativo Seu Canteiro permite que os usuár
 
 - Link de videos :
     - Picth de negocio [aqui]
-    - Funcionamento Back-end e Mobile (React Native) [aqui]
+    - Funcionamento Back-end e Mobile (React Native) (https://www.youtube.com/watch?v=OOMFQD0TJKg)
     - IA Assistente de Cultivo  [aqui]
     - VM Devops (https://youtu.be/vPYzvcIRrBU)
  
