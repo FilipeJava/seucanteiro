@@ -17,8 +17,10 @@ Através dessas funcionalidades, o aplicativo Seu Canteiro permite que os usuár
     - Funcionamento Back-end e Mobile (React Native) (https://www.youtube.com/watch?v=OOMFQD0TJKg)
     - IA Assistente de Cultivo  [aqui]
     - VM Devops (https://youtu.be/vPYzvcIRrBU)
+    
 - Observações :
     - Diagrama de classes esta na pasta Entregas Extras  requisito GS de ENTERPRISE APPLICATION DEVELOPMENT 
+    
     - Aqui está o link para o projeto do frontEnd(React Native), https://github.com/mariananieton/SeuCanteiro , clone o repositorio e nos endpoints deve-se colocar o ip local caso for emular pelo android . 
 
 - Integrantes : 
