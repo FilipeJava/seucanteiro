@@ -2,6 +2,7 @@ package br.com.heinz.seucanteiro.service.serviceImpl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.heinz.seucanteiro.dto.form.LoginFormDTO;
@@ -19,6 +20,9 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     @Override
     public Login salvar(Login login) {
@@ -42,16 +46,13 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public LoginRespostaDTO atualizaLogin( Long id ,LoginFormDTO login) {
+    public LoginRespostaDTO atualizaLogin(Long id, LoginFormDTO login) {
         var loginAtualizado = buscaLogin(id);
         loginAtualizado.setEmail(login.getEmail());
-        loginAtualizado.setSenha(login.getSenha());
+        loginAtualizado.setSenha(encoder.encode(login.getSenha()));
         return convertToRespostaLogin(salvar(loginAtualizado));
 
-
     }
-
-
 
     private Login convertToEntityLogin(LoginFormDTO loginform) {
         return modelMapper.map(loginform, Login.class);
@@ -62,6 +63,5 @@ public class LoginServiceImpl implements LoginService {
         return modelMapper.map(login, LoginRespostaDTO.class);
 
     }
-  
 
 }
