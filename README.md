@@ -13,12 +13,20 @@ Através dessas funcionalidades, o aplicativo Seu Canteiro permite que os usuár
 
 
 - Link de videos :
-    - Picth de negocio [aqui]
+    - Picth de negocio https://www.youtube.com/watch?v=4MUh_Nyr0-0)
     - Funcionamento Back-end e Mobile (React Native) (https://www.youtube.com/watch?v=OOMFQD0TJKg)
     - IA Assistente de Cultivo  [aqui]
     - VM Devops (https://youtu.be/vPYzvcIRrBU)
+- Observações :
     - Diagrama de classes esta na pasta Entregas Extras
- 
+    - Aqui está o link para o projeto do frontEnd(React Native)  , , clone o repositorio e nos endpoints deve-se colocar o ip local caso for emular pelo android . 
+
+- Integrantes : 
+    - RM93042 - FILIPE SANTOS DA SILVA
+    - RM94467 - FRANKLIN PEREIRA DO NASCIMENTO
+    - RM92920 - JOSE GABRIEL DA SILVA COELHO
+    - RM94141 - MARIANA NIETON BORGES
+
 --------------------------
 
 ### ENDPOINTS
@@ -60,7 +68,7 @@ Através dessas funcionalidades, o aplicativo Seu Canteiro permite que os usuár
 ## Orientações
     - somente a requisição de Cadastro de Usuario  e login estão disponíveis sem autenticação , portanto caso ultilize o postman para testes , registre um usuario realize o login , copie o tokem e coloque no cabeçalho das requisições.
     - Por padrao está habilitado com o banco h2 , porem na pasta application.properties tem a configuração caso queria visualizar a persistencia de dados ultilizando oracle pelo SQL Developer 
-    - Aqui está p link para o projeto do frontEnd(React Native)  , , clone o repositorio e nos endpoints deve-se colocar o ip local caso for emular pelo android .  
+   
    
 
 
