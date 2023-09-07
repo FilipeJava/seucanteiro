@@ -19,14 +19,14 @@ Através dessas funcionalidades, o aplicativo Seu Canteiro permite que os usuár
     - VM Devops (https://youtu.be/vPYzvcIRrBU)
     
 - Observações :
-    - Diagrama de classes esta na pasta Entregas Extras  requisito GS de ENTERPRISE APPLICATION DEVELOPMENT 
-    
+       
     - Aqui está o link para o projeto do frontEnd(React Native), https://github.com/mariananieton/SeuCanteiro , clone o repositorio e nos endpoints deve-se colocar o ip local caso for emular pelo android . 
 
 - Integrantes : 
     - RM93042 - FILIPE SANTOS DA SILVA
     - RM94467 - FRANKLIN PEREIRA DO NASCIMENTO
     - RM92920 - JOSE GABRIEL DA SILVA COELHO
+    - RM93915 - JAELSON JONAS DOS SANTOS
     - RM94141 - MARIANA NIETON BORGES
 
 --------------------------
