@@ -12,11 +12,7 @@ Acompanhamento personalizado: O aplicativo permite que os usuários registrem e 
 Através dessas funcionalidades, o aplicativo Seu Canteiro permite que os usuários administrem melhor os processos produtivos e distributivos de alimentos, garantindo uma abordagem mais segura e controlada para a agricultura urbana. Ele capacita os usuários a cultivarem seus próprios alimentos com confiança, fornecendo informações atualizadas, orientações personalizadas nos. Isso resulta em uma maior segurança alimentar, uma melhor gestão dos recursos disponíveis e uma maior autonomia para as pessoas nas áreas urbanas. 
 
 
-- Link de videos :
-    - Picth de negocio https://www.youtube.com/watch?v=4MUh_Nyr0-0)
-    - Funcionamento Back-end e Mobile (React Native) (https://www.youtube.com/watch?v=OOMFQD0TJKg)
-    - IA Assistente de Cultivo Chat gpt (https://www.youtube.com/watch?v=IKCVdENJJ3A)
-    - VM Devops (https://youtu.be/vPYzvcIRrBU)
+
     
 - Observações :
        
@@ -46,7 +42,7 @@ Através dessas funcionalidades, o aplicativo Seu Canteiro permite que os usuár
 --------------------------
 
 - Login Controller
-   - login (Metodo de autenticação com JWT) `Ultiliza JPQL no Repository[requisito GS de ENTERPRISE APPLICATION DEVELOPMENT ]`
+   - login (Metodo de autenticação com JWT)
 
    - atualizar(Atualiza Login isoladamente)
 --------------------------
@@ -59,9 +55,9 @@ Através dessas funcionalidades, o aplicativo Seu Canteiro permite que os usuár
 
     - deletar (Deleta planta e Plantio que por cascade são deletados juntos , pelo id do Plantio )
 
-    - buscarTodos ( para retornar todos os planta plantio ) `Ultiliza JPQL no Repository[requisito GS de ENTERPRISE APPLICATION DEVELOPMENT ]`
+    - buscarTodos ( para retornar todos os planta plantio )
 
-    - index (Paginação e Busca pelo nome)  `Ultiliza JPQL no Repository[requisito GS de ENTERPRISE APPLICATION DEVELOPMENT ]` 
+    - index (Paginação e Busca pelo nome) 
 --------------------------
 - Canteiro Controller
     - buscar todas as Plantas e Plantio pelo id canteiro
