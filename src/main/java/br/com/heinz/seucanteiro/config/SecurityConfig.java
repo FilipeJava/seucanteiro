@@ -3,7 +3,7 @@ package br.com.heinz.seucanteiro.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 
@@ -20,22 +21,25 @@ public class SecurityConfig {
     @Autowired
     AuthorizationFilter authorizationFilter;
 
+    @Autowired
+    Environment env;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        return http
-            .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST, "/api/v1/usuario").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
-                .anyRequest().authenticated()
-            .and()
-            .csrf().disable()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .formLogin().disable()
-            .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
-          
-            .build();
-    }
+   http.csrf(csrf -> csrf.disable())
+                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+                        .requestMatchers(new AntPathRequestMatcher("/api/register")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/login")).permitAll())
+                .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        if (env.getActiveProfiles().length > 0 && env.getActiveProfiles()[0].equals("dev")) {
+            http.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests.anyRequest().permitAll());
+        } else {
+            http.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests.anyRequest().authenticated());
+        }
+
+        return http.build();    }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
